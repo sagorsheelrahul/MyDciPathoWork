@@ -62,9 +62,8 @@ def main():
         os.makedirs(config.output_path)
     
     successful_list = Manager().list()
-    df = pd.read_csv(config.input_path)
-    # Note: Make sure the following CSV file exists in your repo or adjust its path.
-    df_all = pd.read_csv('Tao_NCBI_22June_RefSeq_32927_Complete_1NP_2P.csv')
+    df = pd.read_csv(config.input_path, low_memory=False)
+    df_all = pd.read_csv('NCBI_22June_RefSeq_32927_Complete_1NP_2P_taxnonmy.csv', low_memory=False)  # <-- UPDATED HERE
     ftp_list = df[config.csv_col].to_list()
     print('Number of URLs to download:', len(ftp_list))
     args = []
